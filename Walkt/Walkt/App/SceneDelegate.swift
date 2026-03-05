@@ -15,6 +15,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         self.window = window
 
+        // Eagerly initialize the Core Data stack
+        _ = PersistenceController.shared
+
         let coordinator = AppCoordinator(window: window)
         self.appCoordinator = coordinator
         coordinator.start()

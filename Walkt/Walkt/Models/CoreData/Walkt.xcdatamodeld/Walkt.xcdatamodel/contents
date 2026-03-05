@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23231" systemVersion="24A335" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="NO" userDefinedModelVersionIdentifier="">
+    <entity name="CDWalkSession" representedClassName="CDWalkSession" syncable="YES">
+        <attribute name="averageSpeedMPS" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="duration" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="elevationGainMeters" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="elevationLossMeters" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="endDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="hasRouteData" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="healthKitUUID" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isIndoor" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="maxSpeedMPS" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="sourceName" attributeType="String" defaultValueString=""/>
+        <attribute name="startDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="totalDistanceMeters" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="totalEnergyKcal" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="totalSteps" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="walkTypeRaw" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="routePoints" optional="YES" toMany="YES" ordered="YES" deletionRule="Cascade" destinationEntity="CDRoutePoint" inverseName="walkSession" inverseEntity="CDRoutePoint"/>
+        <fetchIndex name="byHealthKitUUID">
+            <fetchIndexElement property="healthKitUUID" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <fetchIndex name="byStartDate">
+            <fetchIndexElement property="startDate" type="Binary" order="descending"/>
+        </fetchIndex>
+    </entity>
+    <entity name="CDRoutePoint" representedClassName="CDRoutePoint" syncable="YES">
+        <attribute name="altitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="horizontalAccuracy" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="latitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="longitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="sortOrder" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="speed" attributeType="Double" defaultValueString="-1" usesScalarValueType="YES"/>
+        <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="walkSession" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDWalkSession" inverseName="routePoints" inverseEntity="CDWalkSession"/>
+    </entity>
+</model>
